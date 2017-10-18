@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-#include "Actor.h"
+class Actor;
 
 class ActorComponent
 {
