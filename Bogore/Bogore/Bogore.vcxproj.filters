@@ -33,6 +33,9 @@
     <ClInclude Include="ActorComponent.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="RenderComponent.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -48,6 +51,9 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="ActorComponent.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderComponent.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

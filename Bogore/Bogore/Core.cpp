@@ -13,6 +13,7 @@ Core::Core() :
 
 void Core::Loop(void)
 {
+		
 	while (m_isRunning && m_window.isOpen())
 	{
 		sf::Event event;
@@ -25,7 +26,7 @@ void Core::Loop(void)
 		// TODO : Manage time & gameloop 
 		elapsedTime = m_gameClock.getElapsedTime();
 
-		if (elapsedTime.asMilliseconds() > LOOP_TIME_MS)
+		if (elapsedTime.asMilliseconds() > 1000)
 		{
 			// TODO : Manage states & scenes of the game
 
@@ -35,8 +36,8 @@ void Core::Loop(void)
 				it->Update(elapsedTime);
 			}
 
-			m_window.clear();
 			// TODO : Render
+			m_window.clear();
 
 			elapsedTime = sf::milliseconds(elapsedTime.asMilliseconds() - LOOP_TIME_MS); // we get the time left
 			m_gameClock.restart();
