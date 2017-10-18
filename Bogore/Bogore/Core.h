@@ -2,6 +2,10 @@
 
 #include<SFML\Graphics.hpp>
 
+#include "Actor.h"
+
+typedef std::vector<Actor> Actors;
+
 class Core
 {
 public:
@@ -11,7 +15,12 @@ public:
 	void Loop(void);
 
 protected:
-	bool m_isRunning;
 	sf::RenderWindow m_window;
+	bool m_isRunning;
+
+	Actors m_actors;
+
+	sf::Clock m_gameClock;
+	sf::Time elapsedTime;
 };
 

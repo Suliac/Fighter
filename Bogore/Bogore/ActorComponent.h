@@ -9,7 +9,7 @@ public:
 	ActorComponent();
 	virtual ~ActorComponent();
 
-	virtual void Update(int deltaMs) = 0;
+	virtual void Update(sf::Time dt) = 0;
 	virtual void Init(void) = 0;
 	virtual void Exit(void) = 0;
 

@@ -16,12 +16,12 @@ void Actor::AddComponent(ActorComponent * p_component)
 	m_components.insert(std::make_pair(p_component->GetComponentId(), p_component));
 }
 
-void Actor::Update(int deltaMs)
+void Actor::Update(sf::Time dt)
 {
 	// L'update d'un actor consiste a lancer tous les update de ses composants
 	for (ActorComponents::iterator it = m_components.begin(); it != m_components.end(); ++it)
 	{
-		it->second->Update(deltaMs);
+		it->second->Update(dt);
 	}
 }
 

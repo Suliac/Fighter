@@ -5,6 +5,7 @@
 #include<string>
 
 #include "ActorComponent.h"
+#include<SFML\System.hpp>
 
 typedef std::map<std::string, ActorComponent*> ActorComponents;
 
@@ -14,7 +15,7 @@ public:
 	Actor(std::string p_id);
 	virtual ~Actor(void);
 
-	 void Update(int deltaMs);
+	 void Update(sf::Time dt);
 	 void Init(void);
 	 void Exit(void);
 

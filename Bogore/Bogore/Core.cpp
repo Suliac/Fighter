@@ -3,10 +3,10 @@
 
 
 Core::Core() :
-	m_isRunning(true)
+	m_isRunning(true),
+	m_gameClock()
 {
 	m_window.create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "BOGORE");
-
 	Loop();
 }
 
@@ -21,9 +21,26 @@ void Core::Loop(void)
 			if (event.type == sf::Event::Closed)
 				m_window.close();
 		}
+		
+		// TODO : Manage time & gameloop 
+		elapsedTime = m_gameClock.getElapsedTime();
 
+		if (elapsedTime.asMilliseconds() > LOOP_TIME_MS)
+		{
+			// TODO : Manage states & scenes of the game
 
-		m_window.clear();
+			// Actors update
+			for (Actors::iterator it = m_actors.begin(); it != m_actors.end(); ++it)
+			{
+				it->Update(elapsedTime);
+			}
+
+			m_window.clear();
+			// TODO : Render
+
+			elapsedTime = sf::milliseconds(elapsedTime.asMilliseconds() - LOOP_TIME_MS); // we get the time left
+			m_gameClock.restart();
+		}
 
 	}
 }
