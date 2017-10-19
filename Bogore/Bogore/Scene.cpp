@@ -1,11 +1,8 @@
 #include "Scene.h"
 
-
-
 Scene::Scene()
 {
 }
-
 
 Scene::~Scene()
 {
@@ -17,7 +14,7 @@ void Scene::Draw(sf::RenderWindow & p_windows)
 
 	for (SceneNodes::iterator it = m_sceneNodes.begin(); it != m_sceneNodes.end(); ++it)
 	{
-		p_windows.draw(it->second->GetSprite());
+		it->second->Draw(p_windows);
 	}
 
 	p_windows.display();

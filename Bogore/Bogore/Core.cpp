@@ -12,9 +12,9 @@ Core::Core() :
 	Scene gameScene;
 	m_scenes.push_back(gameScene);
 
-	// TODO : Change that by XML loading into factories
+	// TODO : Change that by XML loading into factories (?)
 	Actor player = Actor("player1", *this);
-	std::shared_ptr<ActorComponent> component = std::make_shared(RenderComponent(player, "player1rendercomponent"));
+	std::shared_ptr<ActorComponent> component = std::make_shared<RenderComponent>(RenderComponent(player, "player1rendercomponent"));
 	player.AddComponent(component);
 
 	Loop();
