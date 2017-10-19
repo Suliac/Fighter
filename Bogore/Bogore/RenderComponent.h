@@ -1,24 +1,25 @@
 #pragma once
+#include "Actor.h"
 #include "ActorComponent.h"
+#include "SceneNode.h"
 
-#include<SFML\Graphics.hpp>
+#include<iostream>
+#include<memory>
 
 class RenderComponent :
 	public ActorComponent
 {
 public:
-	RenderComponent();
+	RenderComponent(Actor& p_owner, std::string p_id);
 	~RenderComponent();
 
-protected:
-	// TODO : create an object scene node and put every
-	// info to draw in that class. RenderComponent will
-	// juste get a pointer tab of thoses nodes
-	sf::Texture m_texture;
-	sf::Sprite sprite;
-	sf::IntRect rectSourceSprite;
+	virtual void Update(sf::Time dt) override;
+	virtual void Init(void) override;
+	virtual void Exit(void) override;
 
-	size_t m_currentFrame;
-	size_t m_numberFrame;
+	std::shared_ptr<SceneNode> CreateSceneNode(std::string p_renderComponentId, std::string p_spriteSheetPath, int p_spriteWidth, int p_spriteHeight, int p_numberSpritePerAnim);
+
+protected:
+	std::shared_ptr<SceneNode> m_nodeLinked;
 };
 

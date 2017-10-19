@@ -1,12 +1,22 @@
 #include "Core.h"
 #include "Globals.h"
-
+#include "RenderComponent.h"
 
 Core::Core() :
 	m_isRunning(true),
-	m_gameClock()
+	m_gameClock(),
+	m_currentSceneIndex(0)
 {
 	m_window.create(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "BOGORE");
+	
+	Scene gameScene;
+	m_scenes.push_back(gameScene);
+
+	// TODO : Change that by XML loading into factories
+	Actor player = Actor("player1", *this);
+	std::shared_ptr<ActorComponent> component = std::make_shared(RenderComponent(player, "player1rendercomponent"));
+	player.AddComponent(component);
+
 	Loop();
 }
 
@@ -36,9 +46,11 @@ void Core::Loop(void)
 				it->Update(elapsedTime);
 			}
 
-			// TODO : Render
+			// Render
 			m_window.clear();
+			m_scenes[m_currentSceneIndex].Draw(m_window);
 
+			// Restart clock and decrement elapsedtime
 			elapsedTime = sf::milliseconds(elapsedTime.asMilliseconds() - LOOP_TIME_MS); // we get the time left
 			m_gameClock.restart();
 		}

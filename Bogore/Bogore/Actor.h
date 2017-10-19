@@ -2,27 +2,39 @@
 
 #include<map>
 #include<iostream>
+#include<memory>
 #include<string>
-
-#include "ActorComponent.h"
 #include<SFML\System.hpp>
 
-typedef std::map<std::string, ActorComponent*> ActorComponents;
+#include "ActorComponent.h"
+
+class Core;
+
+typedef std::map<std::string, std::shared_ptr<ActorComponent>> ActorComponents;
 
 class Actor
 {
 public:
-	Actor(std::string p_id);
+	Actor(std::string p_id, Core& p_owner);
 	virtual ~Actor(void);
 
-	 void Update(sf::Time dt);
-	 void Init(void);
-	 void Exit(void);
+	// Update the actor
+	void Update(sf::Time dt);
 
-	void AddComponent(ActorComponent* p_component);
+	// Init the actor
+	void Init(void);
+
+	// Clean exit
+	void Exit(void);
+
+	// Add component to our actor
+	void AddComponent(std::shared_ptr<ActorComponent> p_component);
+
+	inline Core& GetCore() { return m_ownerCore; }
 
 protected:
-	std::map<std::string, ActorComponent*> m_components;
+	ActorComponents m_components;
 	std::string m_actorId;
+	Core& m_ownerCore;
 };
 

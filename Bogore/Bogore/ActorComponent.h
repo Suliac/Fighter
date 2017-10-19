@@ -8,7 +8,7 @@ class Actor;
 class ActorComponent
 {
 public:
-	ActorComponent();
+	ActorComponent(Actor& p_owner, std::string p_id);
 	virtual ~ActorComponent();
 
 	virtual void Update(sf::Time dt) = 0;
@@ -18,7 +18,7 @@ public:
 	inline std::string GetComponentId() const { return m_componentId; }
 
 protected:
+	Actor& m_owner;
 	std::string m_componentId;
-	Actor* m_owner;
 };
 

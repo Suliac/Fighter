@@ -1,7 +1,8 @@
 #include "Actor.h"
 
-Actor::Actor(std::string p_id) :
-	m_actorId(p_id)
+Actor::Actor(std::string p_id, Core& p_owner) :
+	m_actorId(p_id),
+	m_ownerCore(p_owner)
 {
 }
 
@@ -11,9 +12,10 @@ Actor::~Actor(void)
 	m_components.clear();
 }
 
-void Actor::AddComponent(ActorComponent * p_component)
+void Actor::AddComponent(std::shared_ptr<ActorComponent> p_component)
 {
 	m_components.insert(std::make_pair(p_component->GetComponentId(), p_component));
+	p_component->Init();
 }
 
 void Actor::Update(sf::Time dt)
